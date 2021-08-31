@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+polyline {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke: rgba(0,0,0,0.5);
+}
+
+.dot {
+  border: solid 1px red;
+  border-radius: 45px;
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  display: block;
+  background-color: red;
+  z-index: 500;
+}
+.circle {
+  border: solid 1px rgb(0, 0, 0);
+  border-radius: 45px;
+  width: 5px;
+  height: 5px;
+  position: relative;
+  display: block;
+  background-color: rgba(255, 0, 0, 0.116);
+  z-index: 500;
+}
+.line {
+  transform-origin: 0 100%;
+  position: absolute;
+  height: 2px; /* Line width of 3 */
+  background: rgb(255, 80, 80); /* Black fill */
+  z-index: 500;
+}
+.viewport {
+  background-color: lightcoral;
+  width: 320.33px;
+  height: 407.33px;
+}
+.container {
+  background-color: lightseagreen;
+  margin: 2em;
+  position: relative;
+  width: 320.33px;
+  height: 407.33px;
+}

@@ -9,7 +9,31 @@ polyline {
   stroke-linecap: round;
   stroke: rgba(0,0,0,0.5);
 }
-
+.grid-parent {
+  display: grid;
+  grid-template-columns: 66% 33%;
+  padding: 3em;
+  background-color: rgb(165, 80, 49);
+}
+.menu-panel {
+  grid-column-start: 2;
+  background-color: blueviolet;
+}
+.viewport-container {
+  grid-column-start: 1;
+  justify-self: center;
+  position: relative;
+  margin: 2em;
+  background-color: aqua;
+  width: 320.33px;
+  height: 407.33px;
+}
+.viewport {
+  background-color: lightcoral;
+  grid-column-start: 1;
+  width: 320.33px;
+  height: 407.33px;
+}
 .dot {
   border: solid 1px red;
   border-radius: 45px;
@@ -36,16 +60,4 @@ polyline {
   height: 2px; /* Line width of 3 */
   background: rgb(255, 80, 80); /* Black fill */
   z-index: 500;
-}
-.viewport {
-  background-color: lightcoral;
-  width: 320.33px;
-  height: 407.33px;
-}
-.container {
-  background-color: lightseagreen;
-  margin: 2em;
-  position: relative;
-  width: 320.33px;
-  height: 407.33px;
 }

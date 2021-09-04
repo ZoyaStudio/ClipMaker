@@ -35,6 +35,20 @@ var utility = {
     var coordsCopy = coords.slice();
     coordsCopy.splice(index, 1);
     return coordsCopy;
+  },
+  makeClipString: (coordArr) => {
+    var clipString = 'polygon(';
+    coordArr.forEach((pair, index) => {
+      var xCoord = pair[0];
+      var yCoord = pair[1];
+      clipString += xCoord + '% ' + yCoord +  '%';
+      if (index !== coordArr.length - 1) {
+        clipString += ', ';
+      } else {
+        clipString += ')';
+      }
+    });
+    return clipString;
   }
 }
 export default utility;

@@ -3,26 +3,26 @@ import utility from './utility.js';
 import React from 'react';
 import useMouse from '@react-hook/mouse-position';
 import Dot from './Dot.js';
-var {makeLine, splitLine, removeNode, makeClipString} = utility;
+import Line from './Line.js';
+var {makeClipString, removeNode} = utility;
 function ViewPort ({background, coords, setCoords, height, width, setMouseY, setMouseX, setSelectedNode, selectedNode}) {
   const ref = React.useRef(null);
-  var clipString = makeClipString(coords);
   const mouse = useMouse(ref, {
     enterDelay: 100,
     leaveDelay: 100
   })
-  var lines = [];
+  var clipString = makeClipString(coords);
+  var lines = coords.map((pair, index) => {
+    if (index !== coords.length - 1) {
+      return <Line index={index} coords={coords} set={setCoords} height={height} width={width} pair1={pair} pair2={coords[index + 1]}/>
+    } else {
+      return <Line index={index} coords={coords} set={setCoords} height={height} width={width} pair1={pair} pair2={coords[0]}/>
+    }
+  });
 
   var dots = coords.map((pair, index) => {
-    var lineOnclickHandler = () => {
-      setCoords(splitLine(coords, index))
-    }
-    if (index !== coords.length - 1) {
-      makeLine(pair, coords[index + 1], width, height, lines, lineOnclickHandler);
-    }
-    return <Dot index={index} pair={pair} coords={coords} setCoords={setCoords} setSelectedNode={setSelectedNode} removeNode />
+    return <Dot index={index} pair={pair} coords={coords} setCoords={setCoords} setSelectedNode={setSelectedNode} removeNode={removeNode} />
   });
-  makeLine(coords[coords.length -1], coords[0], width, height, lines);
   return (
     <div className="viewport-container"
     ref={ref}

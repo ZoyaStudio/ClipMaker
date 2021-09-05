@@ -2,17 +2,19 @@ import background from './background.jpeg';
 import React, { useState } from 'react';
 import ViewPort from './ViewPort.js';
 import MenuPanel from './MenuPanel.js';
+import Detail from './Detail.js';
+import utility from './utility.js'
 import './../App.css';
 
 // width: 320.33px;
 // height: 407.33px;
 function App() {
+
   const  [coords, setCoords] = useState([[0, 100], [0, 20], [100, 0], [100, 100]])
   const [width, setWidth] = useState(320.33);
   const [height, setHeight] = useState(407.33);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [mouseX, setMouseX] = useState(null);
-  const [mouseY, setMouseY] = useState(null);
+  var clipString = utility.makeClipString(coords);
 
   return (
     <div className="App grid-parent">
@@ -32,16 +34,16 @@ function App() {
     }}/> */}
      <ViewPort
       background={background}
+      clipString={utility.makeClipString(coords)}
       coords={coords}
       setCoords={setCoords}
       height={height}
       width={width}
-      setMouseX={setMouseX}
-      setMouseY={setMouseY}
       selectedNode={selectedNode}
       setSelectedNode={setSelectedNode}
      />
-     <MenuPanel/>
+     <MenuPanel clipString={clipString}/>
+     <Detail clipString={clipString}/>
     </div>
   );
 }

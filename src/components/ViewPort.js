@@ -4,19 +4,20 @@ import React from 'react';
 import useMouse from '@react-hook/mouse-position';
 import Dot from './Dot.js';
 import Line from './Line.js';
-var {makeClipString, removeNode} = utility;
-function ViewPort ({background, coords, setCoords, height, width, setMouseY, setMouseX, setSelectedNode, selectedNode}) {
+
+var {removeNode} = utility;
+function ViewPort ({background, coords, setCoords, clipString, height, width, setSelectedNode, selectedNode}) {
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
     leaveDelay: 100
   })
-  var clipString = makeClipString(coords);
+
   var lines = coords.map((pair, index) => {
     if (index !== coords.length - 1) {
-      return <Line index={index} coords={coords} set={setCoords} height={height} width={width} pair1={pair} pair2={coords[index + 1]}/>
+      return <Line index={index} coords={coords} setCoords={setCoords} height={height} width={width} pair1={pair} pair2={coords[index + 1]}/>
     } else {
-      return <Line index={index} coords={coords} set={setCoords} height={height} width={width} pair1={pair} pair2={coords[0]}/>
+      return <Line index={index} coords={coords} setCoords={setCoords} height={height} width={width} pair1={pair} pair2={coords[0]}/>
     }
   });
 
@@ -41,7 +42,12 @@ function ViewPort ({background, coords, setCoords, height, width, setMouseY, set
     }}
     >
       <div style={{clipPath: clipString}} className="viewport">
-        <img src={background} alt="purple background" className="viewport"
+        <img
+        src={background}
+        alt="purple background"
+        className="viewport"
+        onMouseMove={(e)=> e.preventDefault()}
+        onClick={(e) => e.preventDefault()}
         ></img>
       </div>
       {dots}

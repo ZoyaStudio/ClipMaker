@@ -1,22 +1,5 @@
 
 var utility = {
-  makeLine: (pair1, pair2, width, height, arr, cb) => {
-    var x1 = pair1[0] * width / 100;
-    var y1 = pair1[1] * height / 100;
-    var x2 = pair2[0] * width / 100;
-    var y2 = pair2[1] * height / 100;
-    var length = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-    var angle  = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-    var transform = 'rotate('+angle+'deg)';
-    arr.push(
-      <div className="line" onClick={cb} style={ {
-        transform: transform,
-        width: length + 'px',
-        left: pair1[0] + '%',
-        top: `calc(${pair1[1]}% - 2px)`,
-      }}></div>
-    )
-  },
   splitLine: (coords, index) => {
     var coordsCopy = coords.slice();
     var pointA = coords[index];
@@ -39,8 +22,8 @@ var utility = {
   makeClipString: (coordArr) => {
     var clipString = 'polygon(';
     coordArr.forEach((pair, index) => {
-      var xCoord = pair[0];
-      var yCoord = pair[1];
+      var xCoord = Math.round(pair[0] * 100) / 100;
+      var yCoord = Math.round(pair[1] * 100) / 100;
       clipString += xCoord + '% ' + yCoord +  '%';
       if (index !== coordArr.length - 1) {
         clipString += ', ';

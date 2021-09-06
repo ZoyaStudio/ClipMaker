@@ -20,8 +20,8 @@ function Dot ({index, pair, coords, setCoords, setSelectedNode, removeNode}) {
     }
   }}
   style={{
-    left: `calc(${xCoord}% - 2px)`,
-   top: `calc(${yCoord}% - 2px)`,
+    left: `calc(${xCoord}% - 4px)`,
+   top: `calc(${yCoord}% - 4px)`,
   }}></span>);
 }
 export default Dot;

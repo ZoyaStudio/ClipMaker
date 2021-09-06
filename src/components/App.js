@@ -2,7 +2,6 @@ import background from './background.jpeg';
 import React, { useState } from 'react';
 import ViewPort from './ViewPort.js';
 import MenuPanel from './MenuPanel.js';
-import Detail from './Detail.js';
 import utility from './utility.js'
 import './../App.css';
 
@@ -14,24 +13,13 @@ function App() {
   const [width, setWidth] = useState(320.33);
   const [height, setHeight] = useState(407.33);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [dotColor, setDotColor] = useState('red');
+
   var clipString = utility.makeClipString(coords);
 
   return (
     <div className="App grid-parent">
-      {/* <div className="viewport-container2"
-    style={{width: width + 'px', height: height + 'px'}}
-    onMouseMove={(e)=> {
-      var coordsCopy = coords.slice();
-      // console.log(e.nativeEvent.offsetX/width * 100, e.nativeEvent.offsetY/height * 100);
-      if (selectedNode !== null) {
-        var x = e.nativeEvent.offsetX/height * 100;
-        var y = e.nativeEvent.offsetY/height * 100;
-        if (x > 0 && y > 0) {
-          coordsCopy.splice(selectedNode, 1, [x, y]);
-          setCoords(coordsCopy);
-        }
-      }
-    }}/> */}
+      <h1 className="title">ZoyaStudio's Clip Path Maker</h1>
      <ViewPort
       background={background}
       clipString={utility.makeClipString(coords)}
@@ -43,7 +31,19 @@ function App() {
       setSelectedNode={setSelectedNode}
      />
      <MenuPanel clipString={clipString}/>
-     <Detail clipString={clipString}/>
+     <div className="result-box panel">
+       <h3>Copy and past this into a style sheet:</h3>
+      <p>clip-path: {clipString}</p>
+    </div>
+      <div className="detail panel">
+        <h3>How to use this app:</h3>
+        <p>
+          Left-click and drag a node to move it<br/>
+          Right on a node to delete it.<br/>
+          Hover over the edge of the image to view line<br/>
+          Left-click line to create a node
+        </p>
+      </div>
     </div>
   );
 }

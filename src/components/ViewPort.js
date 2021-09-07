@@ -6,7 +6,21 @@ import Dot from './Dot.js';
 import Line from './Line.js';
 
 var {removeNode} = utility;
-function ViewPort ({background, coords, setCoords, clipString, height, width, setSelectedNode, selectedNode}) {
+function ViewPort ({
+  imageUrl,
+  backgroundColor,
+  backgroundOpacity,
+  tracingLayer,
+  tracingLayerOpacity,
+  dotColor,
+  coords,
+  setCoords,
+  clipString,
+  height,
+  width,
+  setSelectedNode,
+  selectedNode
+}) {
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
@@ -22,7 +36,7 @@ function ViewPort ({background, coords, setCoords, clipString, height, width, se
   });
 
   var dots = coords.map((pair, index) => {
-    return <Dot index={index} pair={pair} coords={coords} setCoords={setCoords} setSelectedNode={setSelectedNode} removeNode={removeNode} />
+    return <Dot index={index} pair={pair} coords={coords} setCoords={setCoords} setSelectedNode={setSelectedNode} removeNode={removeNode} dotColor={dotColor}/>
   });
   return (
     <div className="viewport-container"
@@ -41,15 +55,26 @@ function ViewPort ({background, coords, setCoords, clipString, height, width, se
       }
     }}
     >
-      <div style={{clipPath: clipString}} className="viewport">
+      {tracingLayer && (  <img src={tracingLayer} alt="tracing layer" className="tracing-layer viewport" style={{filter: `opacity(${tracingLayerOpacity})`}}/>)}
+
+      <div style={{clipPath: clipString}} className="viewport image">
         <img
-        src={background}
+        src={imageUrl}
         alt="purple background"
         className="viewport"
         onMouseMove={(e)=> e.preventDefault()}
         onClick={(e) => e.preventDefault()}
         ></img>
       </div>
+      <div className="viewport background" style={{backgroundColor: backgroundColor, filter: `opacity(${backgroundOpacity})`}}></div>
+      <img
+       src={imageUrl}
+       alt="copy that appears behind clipped version"
+       className="viewport image-copy"
+       onMouseMove={(e)=> e.preventDefault()}
+       onClick={(e) => e.preventDefault()}
+      />
+
       {dots}
       {lines}
     </div>

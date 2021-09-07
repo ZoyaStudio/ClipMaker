@@ -1,4 +1,3 @@
-import background from './background.jpeg';
 import React, { useState } from 'react';
 import ViewPort from './ViewPort.js';
 import MenuPanel from './MenuPanel.js';
@@ -8,12 +7,19 @@ import './../App.css';
 // width: 320.33px;
 // height: 407.33px;
 function App() {
-
-  const  [coords, setCoords] = useState([[0, 100], [0, 20], [100, 0], [100, 100]])
-  const [width, setWidth] = useState(320.33);
-  const [height, setHeight] = useState(407.33);
+ // "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"
+ //'https://i.natgeofe.com/n/ffb1b220-9ad7-4f79-ab6f-d236c6d397df/08-love-and-beauty.jpg'
+  const  [coords, setCoords] = useState([[0, 100], [0, 20], [100, 0], [100, 100]]);
+  const [width, setWidth] = useState(885);
+  const [height, setHeight] = useState(604);
+  const [sizeFactor, setSizeFactor] = useState(.5);
+  const [imageUrl, setImageUrl] = useState('https://i.natgeofe.com/n/ffb1b220-9ad7-4f79-ab6f-d236c6d397df/08-love-and-beauty.jpg')
+  const [tracingLayer, setTracingLayer] = useState(null);
+  const [tracingLayerOpacity, setTracingLayerOpacity] = useState(1);
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(.5);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [dotColor, setDotColor] = useState('red');
+  const [dotColor, setDotColor] = useState('#FF0000');
 
   var clipString = utility.makeClipString(coords);
 
@@ -21,16 +27,40 @@ function App() {
     <div className="App grid-parent">
       <h1 className="title">ZoyaStudio's Clip Path Maker</h1>
      <ViewPort
-      background={background}
+      imageUrl={imageUrl}
+      tracingLayer={tracingLayer}
+      tracingLayerOpacity={tracingLayerOpacity}
+      backgroundColor={backgroundColor}
+      backgroundOpacity={backgroundOpacity}
+      dotColor={dotColor}
       clipString={utility.makeClipString(coords)}
       coords={coords}
       setCoords={setCoords}
-      height={height}
-      width={width}
+      height={height * sizeFactor}
+      width={width * sizeFactor}
       selectedNode={selectedNode}
       setSelectedNode={setSelectedNode}
      />
-     <MenuPanel clipString={clipString}/>
+     <MenuPanel
+     setDotColor={setDotColor}
+     dotColor={dotColor}
+     setSizeFactor={setSizeFactor}
+     sizeFactor={sizeFactor}
+     setBackgroundColor={setBackgroundColor}
+     backgroundColor={backgroundColor}
+     setBackgroundOpacity={setBackgroundOpacity}
+     backgroundOpacity={backgroundOpacity}
+     setWidth={setWidth}
+     width={width}
+     setHeight={setHeight}
+     height={height}
+     setImageUrl={setImageUrl}
+     imageUrl={imageUrl}
+     setTracingLayer={setTracingLayer}
+     tracingLayer={tracingLayer}
+     setTracingLayerOpacity={setTracingLayerOpacity}
+     tracingLayerOpacity={setTracingLayerOpacity}
+     />
      <div className="result-box panel">
        <h3>Copy and past this into a style sheet:</h3>
       <p>clip-path: {clipString}</p>

@@ -1,4 +1,4 @@
-function Dot ({index, pair, coords, setCoords, setSelectedNode, removeNode}) {
+function Dot ({index, pair, coords, setCoords, setSelectedNode, removeNode, dotColor}) {
   var xCoord = pair[0];
   var yCoord = pair[1];
 
@@ -22,6 +22,9 @@ function Dot ({index, pair, coords, setCoords, setSelectedNode, removeNode}) {
   style={{
     left: `calc(${xCoord}% - 4px)`,
    top: `calc(${yCoord}% - 4px)`,
+   border: "solid 1px " + dotColor,
+   backgroundColor: "rgba(0, 0, 0, 0.377)"
+
   }}></span>);
 }
 export default Dot;

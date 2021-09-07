@@ -1,0 +1,8 @@
+.test {
+  clip-path: polygon(0% 100%, 0% 20%, 100% 0%, 100% 100%);
+  /* width: 885px;
+   height: 604px; */
+   width: 442.5px;
+   height: 302px;
+  background-color: rgb(255, 0, 0);
+}

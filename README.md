@@ -1,5 +1,14 @@
 # About ZoyaStudio's Clip Path Maker
-This app is a tool for generating clip-path coordinates to use as a CSS style. I created it to create intricate paths for another project.
+This app is a tool for generating clip-path coordinates to use as a CSS style. I made it to create intricate paths for my Character Creator app. 
+
+Clip paths are a powerful and versatile way of cropping elements on a webpage. They have excellent browser support and can be animated. They are easy to add but difficult to create. Most GUIs for creating clip paths work best for simple shapes. 
+
+My particular application of clip paths required unusually complex shapes and I found myself spending more time fiddling with the paths than coding. This app streamlines the workflow by allowing the user to easily add and remove nodes and overlay a ‘tracing image’ to use as a guide for the path.
+
+Read about my path (pun intended) to discovering this wonderful CSS property [here](https://medium.com/@eamendenhall/creative-css-and-clip-path-magic-374d029e71b5). 
+
+Try it out for yourself [here](https://floating-dusk-75152.herokuapp.com/) (give Heroku a minute to spin it up 	:slightly_smiling_face:).
+
 
 <p align="center">
   <img src="./app-screenshot.png" ><br>
